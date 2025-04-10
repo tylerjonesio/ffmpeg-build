@@ -33,7 +33,7 @@ get_library_source() {
   #   ;;
   ffmpeg)
     SOURCE_REPO_URL="https://github.com/tylerjonesio/FFmpeg"
-    SOURCE_ID="7.1.1"
+    SOURCE_ID="7.1.1.1"
     SOURCE_TYPE="TAG"
     ;;
   # fontconfig)
