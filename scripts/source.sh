@@ -32,8 +32,8 @@ get_library_source() {
   #   SOURCE_TYPE="TAG"
   #   ;;
   ffmpeg)
-    SOURCE_REPO_URL="https://github.com/tylerjonesio/FFmpeg"
-    SOURCE_ID="7.1.1.1"
+    SOURCE_REPO_URL="https://github.com/FFmpeg/FFmpeg"
+    SOURCE_ID="n7.1.1"
     SOURCE_TYPE="TAG"
     ;;
   # fontconfig)
@@ -168,7 +168,7 @@ get_library_source() {
   #   ;;
   nettle)
     SOURCE_REPO_URL="https://git.lysator.liu.se/nettle/nettle"
-    SOURCE_ID="nettle_3.8.1_release_20220727"
+    SOURCE_ID="nettle_3.10.2_release_20250626"
     SOURCE_TYPE="TAG"
     ;;
   # opencore-amr)
