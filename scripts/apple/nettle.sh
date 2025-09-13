@@ -5,9 +5,14 @@ ASM_OPTIONS=""
 case ${ARCH} in
 arm*)
   ASM_OPTIONS="--enable-arm-neon"
+  HOST_DARWIN="arm-apple-darwin"
   ;;
 i386 | x86-64*)
   ASM_OPTIONS="--enable-x86-aesni"
+  HOST_DARWIN="x86_64-apple-darwin"
+  ;;
+* ) 
+  HOST_DARWIN="${HOST}" 
   ;;
 esac
 
@@ -40,7 +45,7 @@ overwrite_file "${FFMPEG_KIT_TMPDIR}"/source/config/config.sub "${BASEDIR}"/src/
   --disable-gcov \
   --disable-documentation \
   ${ASM_OPTIONS} \
-  --host="${HOST}" || return 1
+  --host="${HOST_DARWIN}" || return 1
 
 make -j$(get_cpu_count) || return 1
 
