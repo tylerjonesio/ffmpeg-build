@@ -63,7 +63,7 @@ get_library_source() {
     ;;
   gnutls)
     SOURCE_REPO_URL="https://gitlab.com/gnutls/gnutls/"
-    SOURCE_ID="3.7.9"
+    SOURCE_ID="3.8.12"
     SOURCE_TYPE="TAG"
     ;;
   # harfbuzz)
