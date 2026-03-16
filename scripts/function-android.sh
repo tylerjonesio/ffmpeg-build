@@ -992,7 +992,10 @@ get_aar_directory() {
 }
 
 android_ndk_cmake() {
-  local cmake=$(find "${ANDROID_SDK_ROOT}"/cmake -path \*/bin/cmake -type f -print -quit)
+  local cmake=""
+  if [[ -d "${ANDROID_SDK_ROOT}/cmake" ]]; then
+    cmake=$(find "${ANDROID_SDK_ROOT}"/cmake -path \*/bin/cmake -type f -print -quit)
+  fi
   if [[ -z ${cmake} ]]; then
     cmake=$(which cmake)
   fi
@@ -1013,6 +1016,7 @@ android_ndk_cmake() {
 
   echo ${cmake} \
     -DCMAKE_VERBOSE_MAKEFILE=0 \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -DCMAKE_TOOLCHAIN_FILE="${ANDROID_NDK_ROOT}"/build/cmake/android.toolchain.cmake \
     -DCMAKE_SYSROOT="${ANDROID_SYSROOT}" \
     -DCMAKE_FIND_ROOT_PATH="${ANDROID_SYSROOT}" \

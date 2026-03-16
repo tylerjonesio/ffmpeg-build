@@ -16,8 +16,10 @@ fi
 # ALWAYS CLEAN THE PREVIOUS BUILD
 make distclean 2>/dev/null 1>/dev/null
 
-# REGENERATE BUILD FILES IF NECESSARY OR REQUESTED
-if [[ ! -f "${BASEDIR}"/src/"${LIB_NAME}"/configure ]] || [[ ${RECONF_libiconv} -eq 1 ]]; then
+# REGENERATE BUILD FILES IF NECESSARY OR REQUESTED.
+# libiconv git checkouts may already contain top-level configure but omit
+# libcharset/configure, which breaks the subsequent sub-build.
+if [[ ! -f "${BASEDIR}"/src/"${LIB_NAME}"/configure ]] || [[ ! -f "${BASEDIR}"/src/"${LIB_NAME}"/libcharset/configure ]] || [[ ${RECONF_libiconv} -eq 1 ]]; then
   ./autogen.sh || return 1
 fi
 

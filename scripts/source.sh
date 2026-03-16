@@ -16,11 +16,11 @@ get_library_source() {
   #   SOURCE_ID="v1.5.1"
   #   SOURCE_TYPE="TAG"
   #   ;;
-  # cpu-features)
-  #   SOURCE_REPO_URL="https://github.com/arthenica/cpu_features"
-  #   SOURCE_ID="v0.8.0"
-  #   SOURCE_TYPE="TAG"
-  #   ;;
+  cpu-features)
+    SOURCE_REPO_URL="https://github.com/google/cpu_features"
+    SOURCE_ID="v0.8.0"
+    SOURCE_TYPE="TAG"
+    ;;
   # dav1d)
   #   SOURCE_REPO_URL="https://github.com/arthenica/dav1d"
   #   SOURCE_ID="1.2.1"
@@ -101,11 +101,11 @@ get_library_source() {
   #   SOURCE_ID="0.17.1"
   #   SOURCE_TYPE="TAG"
   #   ;;
-  # libiconv)
-  #   SOURCE_REPO_URL="https://github.com/arthenica/libiconv"
-  #   SOURCE_ID="v1.17"
-  #   SOURCE_TYPE="TAG"
-  #   ;;
+  libiconv)
+    SOURCE_REPO_URL="https://git.savannah.gnu.org/git/libiconv.git"
+    SOURCE_ID="v1.17"
+    SOURCE_TYPE="TAG"
+    ;;
   # libilbc)
   #   SOURCE_REPO_URL="https://github.com/arthenica/libilbc"
   #   SOURCE_ID="v3.0.4"
