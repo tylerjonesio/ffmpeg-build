@@ -1028,7 +1028,8 @@ android_ndk_cmake() {
 }
 
 set_toolchain_paths() {
-  export PATH=$PATH:${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/${TOOLCHAIN}/bin
+  local TOOLCHAIN_BIN="${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/${TOOLCHAIN}/bin"
+  export PATH="${TOOLCHAIN_BIN}:$PATH"
 
   HOST=$(get_host)
 
@@ -1041,11 +1042,11 @@ set_toolchain_paths() {
     ;;
   esac
   if [[ $(compare_versions "$DETECTED_NDK_VERSION" "23") -ge 0 ]]; then
-    export AR=llvm-ar
-    export LD=lld
-    export RANLIB=llvm-ranlib
-    export STRIP=llvm-strip
-    export NM=llvm-nm
+    export AR="${TOOLCHAIN_BIN}/llvm-ar"
+    export LD="${TOOLCHAIN_BIN}/ld.lld"
+    export RANLIB="${TOOLCHAIN_BIN}/llvm-ranlib"
+    export STRIP="${TOOLCHAIN_BIN}/llvm-strip"
+    export NM="${TOOLCHAIN_BIN}/llvm-nm"
     export AS=$CC
   else
     export AR=${HOST}-ar
