@@ -403,6 +403,13 @@ git checkout libavutil 1>>"${BASEDIR}"/build.log 2>&1
 # 1. Use thread local log levels
 ${SED_INLINE} 's/static int av_log_level/__thread int av_log_level/g' "${BASEDIR}"/src/"${LIB_NAME}"/libavutil/log.c 1>>"${BASEDIR}"/build.log 2>&1 || return 1
 
+# 1a. Make tx lookup tables hidden to avoid non-PIC AArch64 relocations when
+# static libavutil is linked into another shared library.
+${SED_INLINE} '/#include "mem.h"/a\
+#include "attributes_internal.h"
+' "${BASEDIR}"/src/"${LIB_NAME}"/libavutil/tx_template.c 1>>"${BASEDIR}"/build.log 2>&1 || return 1
+${SED_INLINE} 's|DECLARE_ALIGNED(32, TXSample, TX_TAB(ff_tx_tab_ ##name))\[size\]|DECLARE_ALIGNED(32, TXSample, TX_TAB(ff_tx_tab_ ##name)) attribute_visibility_hidden[size]|g' "${BASEDIR}"/src/"${LIB_NAME}"/libavutil/tx_template.c 1>>"${BASEDIR}"/build.log 2>&1 || return 1
+
 # 2. Enable ffmpeg-kit protocols
 if [[ ${NO_FFMPEG_KIT_PROTOCOLS} == "1" ]]; then
   echo -e "\nINFO: Disabled custom ffmpeg-kit protocols\n" 1>>"${BASEDIR}"/build.log 2>&1
