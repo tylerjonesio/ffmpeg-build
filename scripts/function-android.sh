@@ -358,6 +358,8 @@ get_cflags() {
 }
 
 get_cxxflags() {
+  local PIC_FLAGS="-fPIC"
+
   if [[ -z ${NO_LINK_TIME_OPTIMIZATION} ]]; then
     local LINK_TIME_OPTIMIZATION_FLAGS="-flto"
   else
@@ -372,26 +374,26 @@ get_cxxflags() {
 
   case $1 in
   gnutls)
-    echo "-std=c++11 -fno-rtti ${OPTIMIZATION_FLAGS}"
+    echo "-std=c++11 -fno-rtti ${PIC_FLAGS} ${OPTIMIZATION_FLAGS}"
     ;;
   ffmpeg)
     if [[ -z ${FFMPEG_KIT_DEBUG} ]]; then
-      echo "-std=c++11 -fno-exceptions -fno-rtti ${LINK_TIME_OPTIMIZATION_FLAGS} -O2 -ffunction-sections -fdata-sections"
+      echo "-std=c++11 -fno-exceptions -fno-rtti ${PIC_FLAGS} ${LINK_TIME_OPTIMIZATION_FLAGS} -O2 -ffunction-sections -fdata-sections"
     else
-      echo "-std=c++11 -fno-exceptions -fno-rtti ${FFMPEG_KIT_DEBUG}"
+      echo "-std=c++11 -fno-exceptions -fno-rtti ${PIC_FLAGS} ${FFMPEG_KIT_DEBUG}"
     fi
     ;;
   opencore-amr)
-    echo "${OPTIMIZATION_FLAGS}"
+    echo "${PIC_FLAGS} ${OPTIMIZATION_FLAGS}"
     ;;
   x265)
-    echo "-std=c++11 -fno-exceptions ${OPTIMIZATION_FLAGS}"
+    echo "-std=c++11 -fno-exceptions ${PIC_FLAGS} ${OPTIMIZATION_FLAGS}"
     ;;
   rubberband | srt | tesseract | zimg)
-    echo "-std=c++11 ${OPTIMIZATION_FLAGS}"
+    echo "-std=c++11 ${PIC_FLAGS} ${OPTIMIZATION_FLAGS}"
     ;;
   *)
-    echo "-std=c++11 -fno-exceptions -fno-rtti ${OPTIMIZATION_FLAGS}"
+    echo "-std=c++11 -fno-exceptions -fno-rtti ${PIC_FLAGS} ${OPTIMIZATION_FLAGS}"
     ;;
   esac
 }
