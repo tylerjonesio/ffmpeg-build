@@ -367,7 +367,7 @@ if [[ -z ${FFMPEG_KIT_DEBUG} ]]; then
   if [[ -z ${NO_LINK_TIME_OPTIMIZATION} ]]; then
     DEBUG_OPTIONS="--disable-debug --enable-lto"
   else
-    DEBUG_OPTIONS="--disable-debug --disable-lto"
+    DEBUG_OPTIONS="--disable-debug"
   fi
 else
   DEBUG_OPTIONS="--enable-debug --disable-stripping"
