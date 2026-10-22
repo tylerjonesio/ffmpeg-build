@@ -457,7 +457,6 @@ fi
   ${DEBUG_OPTIONS} \
   --disable-neon-clobber-test \
   --disable-programs \
-  --disable-postproc \
   --disable-doc \
   --disable-htmlpages \
   --disable-manpages \
